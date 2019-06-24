@@ -1,6 +1,6 @@
-be6381ce2e96167b3bc078d3a8125555 *DESCRIPTION
+590d34ec9cc6a6693817dbf316f5291b *DESCRIPTION
 f1cd57fb03ba71068a0d7919b2155f0a *NAMESPACE
-3cd4288ba064444ee30ac252d64b6d27 *NEWS.md
+d3278c972dc69867ffd937d22ab56894 *NEWS.md
 2a0763a01831fb528ad57420bcd064a0 *R/aaa_utils.R
 46b785f7c68aecb9c8c66376b5b44a72 *R/tts_amazon_auth.R
 744ab87047135601e6fc479b1acd89ae *R/tts_auth.R
@@ -8,13 +8,13 @@ a4410472f50638e0c129fabc2dfb3476 *R/tts_backend.R
 db126a19611e89244c6c1284850a8df2 *R/tts_google_auth.R
 c87d1994cdfcd6dbfd4f9b92e1e57a1b *R/tts_microsoft_auth.R
 0d335cdcddbdc30870dc3a40c976b03c *R/tts_synthesize.R
-7c6776f197651a991f4b93462bc1fcd6 *R/tts_voices.R
+92eef186bfd41a4df8772d132d106144 *R/tts_voices.R
 8d2487dbf45064f33b08e5a80830b68e *R/utils-pipe.R
-8c5940bbf1aada687fd083211622675e *README.md
-544535bbe65b3dc1506a4bec885f2404 *build/vignette.rds
+c233243ad3639c6992621658a7dade25 *README.md
+5156f36738fbbd1f61d00ffaeebdcc9a *build/vignette.rds
 a624ab4303b7d067112114d77edd26fe *inst/doc/listing_voices.R
 cd7cdfb2ef7b089f125f755d1cb14e1e *inst/doc/listing_voices.Rmd
-bff4f8b2d29008caad70a20dc3f54c62 *inst/doc/listing_voices.html
+6bd13551a7da56410cdc29b29e016fd3 *inst/doc/listing_voices.html
 424e8a694b4d5ae1b0cab3b976bc504c *man/figures/README-pressure-1.png
 1f7896a1b866ff9ae89ba35be7c7b6f1 *man/pipe.Rd
 03c96af5e16d0ed6f0edcf0282dce4b6 *man/tts.Rd

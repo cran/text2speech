@@ -1,7 +1,7 @@
 Type: Package
 Package: text2speech
 Title: Text to Speech
-Version: 0.2.4
+Version: 0.2.5
 Authors@R: 
     person(given = "John",
            family = "Muschelli",
@@ -23,8 +23,8 @@ BugReports: https://github.com/muschellij2/text2speech/issues
 Imports: aws.polly, aws.signature, dplyr, googleAuthR, googleLanguageR,
         httr, mscstts (>= 0.5.1), tuneR, magrittr
 NeedsCompilation: no
-Packaged: 2019-06-14 18:28:07 UTC; johnmuschelli
+Packaged: 2019-06-24 20:20:51 UTC; johnmuschelli
 Author: John Muschelli [aut, cre] (<https://orcid.org/0000-0001-6469-1750>)
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-06-14 18:40:27 UTC
+Date/Publication: 2019-06-24 20:50:27 UTC
