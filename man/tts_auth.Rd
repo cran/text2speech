@@ -13,8 +13,11 @@
 \usage{
 tts_amazon_auth(key_or_json_file = NULL, ...)
 
-tts_auth(service = c("amazon", "google", "microsoft"),
-  key_or_json_file = NULL, ...)
+tts_auth(
+  service = c("amazon", "google", "microsoft"),
+  key_or_json_file = NULL,
+  ...
+)
 
 tts_google_authenticated()
 
@@ -31,7 +34,7 @@ tts_microsoft_auth(key_or_json_file = NULL, ...)
 or JSON file (for Google)}
 
 \item{...}{Additional arguments to pass to
-[aws.signature::use_credentials()] or [mscstts::ms_get_tts_token()]}
+\code{\link[aws.signature:use_credentials]{aws.signature::use_credentials()}} or \code{\link[mscstts:ms_get_tts_token]{mscstts::ms_get_tts_token()}}}
 
 \item{service}{type of synthesis engine}
 }
@@ -43,14 +46,16 @@ Authorize Text-to-Speech Engine
 }
 \examples{
 tts_auth("google")
-tts_auth("amazon")
 tts_auth("microsoft")
 
 tts_google_authenticated()
 tts_microsoft_authenticated()
-tts_amazon_authenticated()
 
 tts_google_auth()
 tts_microsoft_auth()
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+tts_auth("amazon")
+tts_amazon_authenticated()
 tts_amazon_auth()
+}
 }

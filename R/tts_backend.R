@@ -5,7 +5,10 @@
 #' argument `voice` for [aws.polly::get_synthesis], or
 #' or [mscstts::ms_synthesize()] or the
 #' `name` argument for [googleLanguageR::gl_talk()]
-#'
+#' @examples
+#' tts_default_voice("amazon")
+#' tts_default_voice("google")
+#' tts_default_voice("microsoft")
 tts_google = function(
   text,
   output_format = c("mp3", "wav"),
@@ -38,8 +41,8 @@ tts_google = function(
     out = lapply(res, tts_audio_read,
                  output_format = audio_type)
     df = dplyr::tibble(original_text = string,
-           text = strings,
-           wav = out, file = res)
+                       text = strings,
+                       wav = out, file = res)
     # out = do.call(tuneR::bind, out)
   })
   names(res) = length(text)
@@ -62,16 +65,38 @@ tts_amazon = function(
   voice = "Joanna",
   bind_audio = TRUE,
   ...) {
-
+  if (!requireNamespace("aws.polly", quietly = TRUE)) {
+    stop(paste0(
+      "This function requires aws.polly to operate",
+      " please use\n",
+      "install.packages('aws.polly')\n",
+      "to use these functions"))
+  }
   limit = 1500
   output_format = match.arg(output_format)
   audio_type = output_format
 
+  sample_rate = switch(
+    output_format,
+    "mp3" = 24000,
+    "wav" = 16000)
   output_format = switch(
     output_format,
     "mp3" = "mp3",
     "wav" = "pcm")
 
+  args = list(...)
+  if (is.null(args$rate)) {
+    args$rate = sample_rate
+  }
+  if (!is.null(args$format)) {
+    warning(
+      paste0(
+      "format was specified in ... for tts_amazon",
+      ", this should be specified in output_format argument, format",
+      " is overridden")
+    )
+  }
   res = lapply(text, function(string) {
     strings = tts_split_text(string,
                              limit = limit)
@@ -79,12 +104,18 @@ tts_amazon = function(
     res = vapply(strings, function(tt) {
       output = tts_temp_audio(audio_type)
 
-      out = aws.polly::get_synthesis(
-        tt,
-        voice = voice,
-        format = output_format,
-        ...)
+      args$text = tt
+      args$voice = voice
+      args$format = output_format
+
+      out = do.call(
+        aws.polly::get_synthesis,
+        args = args)
+
       writeBin(out, con = output)
+      if (audio_type == "wav") {
+        output = pcm_to_wav(input = output, sample_rate = args$rate)
+      }
       output
     }, FUN.VALUE = character(1L))
     out = lapply(res, tts_audio_read,
@@ -158,4 +189,17 @@ tts_microsoft = function(
   }
 
   return(res)
+}
+
+#' @rdname tts
+#' @export
+tts_default_voice = function(
+  service = c("amazon", "google", "microsoft")
+) {
+  voice = switch(
+    service,
+    google = "en-US-Standard-C",
+    microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    amazon = "Joanna")
+  return(voice)
 }

@@ -4,21 +4,43 @@
 \alias{tts_google}
 \alias{tts_amazon}
 \alias{tts_microsoft}
+\alias{tts_default_voice}
 \alias{tts}
 \title{Text to Speech}
 \usage{
-tts_google(text, output_format = c("mp3", "wav"),
-  voice = "en-US-Standard-C", bind_audio = TRUE, ...)
+tts_google(
+  text,
+  output_format = c("mp3", "wav"),
+  voice = "en-US-Standard-C",
+  bind_audio = TRUE,
+  ...
+)
 
-tts_amazon(text, output_format = c("mp3", "wav"), voice = "Joanna",
-  bind_audio = TRUE, ...)
+tts_amazon(
+  text,
+  output_format = c("mp3", "wav"),
+  voice = "Joanna",
+  bind_audio = TRUE,
+  ...
+)
 
-tts_microsoft(text, output_format = c("mp3", "wav"),
+tts_microsoft(
+  text,
+  output_format = c("mp3", "wav"),
   voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-  bind_audio = TRUE, ...)
+  bind_audio = TRUE,
+  ...
+)
 
-tts(text, output_format = c("mp3", "wav"), ..., service = c("amazon",
-  "google", "microsoft"), bind_audio = TRUE)
+tts_default_voice(service = c("amazon", "google", "microsoft"))
+
+tts(
+  text,
+  output_format = c("mp3", "wav"),
+  ...,
+  service = c("amazon", "google", "microsoft"),
+  bind_audio = TRUE
+)
 }
 \arguments{
 \item{text}{A character vector of text to speak}
@@ -27,34 +49,35 @@ tts(text, output_format = c("mp3", "wav"), ..., service = c("amazon",
 
 \item{voice}{A full voice name that can be passed to the
 service, such as the
-argument `voice` for [aws.polly::get_synthesis], or
-or [mscstts::ms_synthesize()] or the
-`name` argument for [googleLanguageR::gl_talk()]}
+argument \code{voice} for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}, or
+or \code{\link[mscstts:ms_synthesize]{mscstts::ms_synthesize()}} or the
+\code{name} argument for \code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
 
-\item{bind_audio}{Should the [text2speech::tts_bind_wav()]
+\item{bind_audio}{Should the \code{\link[text2speech:tts_bind_wav]{text2speech::tts_bind_wav()}}
 be run on after the audio has been created, to ensure that
 the length of text and the number of rows is consistent?
 This affects the output format of some audio.}
 
 \item{...}{Additional arguments to
-[text2speech::tts_google()],
-[text2speech::tts_amazon()], or
-[text2speech::tts_microsoft()]}
+\code{\link[text2speech:tts_google]{text2speech::tts_google()}},
+\code{\link[text2speech:tts_amazon]{text2speech::tts_amazon()}}, or
+\code{\link[text2speech:tts_microsoft]{text2speech::tts_microsoft()}}}
 
 \item{service}{service to use}
 }
 \value{
-A `data.frame` of text and wav files
+A \code{data.frame} of text and wav files
 }
 \description{
 Text to Speech
 }
 \note{
-All functions have a  `voice`` argument fro a
-full voice name that can be passed to the
-service, such as `voice` for [aws.polly::get_synthesis]
+All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}
 }
 \examples{
+tts_default_voice("amazon")
+tts_default_voice("google")
+tts_default_voice("microsoft")
 
 if (requireNamespace("stringi", quietly = TRUE)) {
     set.seed(1)

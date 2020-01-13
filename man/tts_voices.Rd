@@ -7,13 +7,13 @@
 \alias{tts_google_voices}
 \title{Text to Speech Voices}
 \usage{
-tts_voices(service = c("amazon", "google", "microsoft"))
+tts_voices(service = c("amazon", "google", "microsoft"), ...)
 
-tts_amazon_voices()
+tts_amazon_voices(...)
 
-tts_microsoft_voices()
+tts_microsoft_voices(...)
 
-tts_google_voices()
+tts_google_voices(...)
 }
 \arguments{
 \item{service}{service to use}
@@ -21,7 +21,7 @@ tts_google_voices()
 \item{...}{Additional arguments to service voice listings.}
 }
 \value{
-A `data.frame` of language codes, voices, genders,
+A \code{data.frame} of language codes, voices, genders,
 and language names
 }
 \description{
@@ -34,7 +34,9 @@ tts_voices(service = "microsoft")
 if (tts_google_auth()) {
 tts_voices(service = "google")
 }
+if (requireNamespace("aws.polly", quietly = TRUE)) {
 if (tts_amazon_auth()) {
 tts_voices(service = "amazon")
+}
 }
 }
