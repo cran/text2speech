@@ -53,12 +53,24 @@ tts_google = function(
   if (bind_audio) {
     res = tts_bind_wav(res)
   }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
 
   return(res)
 }
 
 #' @export
 #' @rdname tts
+#' @examples \dontrun{
+#' text='<speak>
+#'   He was caught up in the game.<break time="1s"/> In the middle of the
+#'   10/3/2014 <sub alias="World Wide Web Consortium">W3C</sub> meeting,
+#'   he shouted, "Nice job!" quite loudly. When his boss stared at him, he repeated
+#'   <amazon:effect name="whispered">"Nice job,"</amazon:effect> in a
+#'   whisper.
+#' </speak>'
+#' }
 tts_amazon = function(
   text,
   output_format = c("mp3", "wav"),
@@ -132,6 +144,9 @@ tts_amazon = function(
   if (bind_audio) {
     res = tts_bind_wav(res)
   }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
 
   return(res)
 
@@ -186,6 +201,9 @@ tts_microsoft = function(
   res$audio_type = audio_type
   if (bind_audio) {
     res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
   }
 
   return(res)

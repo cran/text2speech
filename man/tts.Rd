@@ -57,9 +57,9 @@ the length of text and the number of rows is consistent?
 This affects the output format of some audio.}
 
 \item{...}{Additional arguments to
-\code{\link[text2speech:tts_google]{text2speech::tts_google()}},
-\code{\link[text2speech:tts_amazon]{text2speech::tts_amazon()}}, or
-\code{\link[text2speech:tts_microsoft]{text2speech::tts_microsoft()}}}
+\code{text2speech::tts_google()},
+\code{text2speech::tts_amazon()}, or
+\code{text2speech::tts_microsoft()}}
 
 \item{service}{service to use}
 }
@@ -76,6 +76,15 @@ All functions have a  \verb{voice`` argument fro a full voice name that can be p
 tts_default_voice("amazon")
 tts_default_voice("google")
 tts_default_voice("microsoft")
+\dontrun{
+text='<speak>
+  He was caught up in the game.<break time="1s"/> In the middle of the
+  10/3/2014 <sub alias="World Wide Web Consortium">W3C</sub> meeting,
+  he shouted, "Nice job!" quite loudly. When his boss stared at him, he repeated
+  <amazon:effect name="whispered">"Nice job,"</amazon:effect> in a
+  whisper.
+</speak>'
+}
 
 if (requireNamespace("stringi", quietly = TRUE)) {
     set.seed(1)

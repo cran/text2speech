@@ -1,11 +1,20 @@
+wav_duration = function(object) {
+  if (inherits(object, "Wave")) {
+    l <- length(object@left)
+    return(round(l / object@samp.rate, 2))
+  } else {
+    return(NA_real_)
+  }
+}
+
 #' Text to Speech
 #'
 #' @param text A character vector of text to speak
 #' @param output_format Format of output files
 #' @param ... Additional arguments to
-#' [text2speech::tts_google()],
-#' [text2speech::tts_amazon()], or
-#' [text2speech::tts_microsoft()]
+#' `text2speech::tts_google()`,
+#' `text2speech::tts_amazon()`, or
+#' `text2speech::tts_microsoft()`
 #' @param service service to use
 #'
 #' @note All functions have a  `voice`` argument fro a
@@ -96,6 +105,7 @@ tts_bind_wav = function(result) {
       return(x)
     }
     wav = x$wav
+    names(wav) = NULL
     wav = do.call(tuneR::bind, wav)
     txt = paste(x$text, collapse = " ")
     output = tempfile(fileext = ".wav")
