@@ -1,4 +1,6 @@
-#' Convert PCM to Wav
+#' Convert PCM to WAV
+#'
+#' Accepts PCM audio data as input and generates a corresponding WAV file
 #'
 #' @param input output from `get_synthesis`` from \code{aws.polly} or
 #' PCM filename
@@ -7,12 +9,12 @@
 #' @param sample_rate Sampling rate for [tuneR::Wave]
 #' @return A filename of the output
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' fname = system.file("extdata", "pcm_file.wav", package = "text2speech")
 #' res = pcm_to_wav(fname)
 #' testthat::expect_error(tuneR::readWave(fname))
 #' testthat::expect_is(tuneR::readWave(res), "Wave")
-#'
+#' }
 #' \dontrun{
 #' if (requireNamespace("aws.polly", quietly = TRUE)) {
 #' text = "hey, ho, let's go!"
@@ -21,13 +23,10 @@
 #' }
 #' }
 #' }
-pcm_to_wav = function(
-  input,
-  output = tempfile(fileext = ".wav"),
-  sample_rate = 16000,
-  extensible = FALSE) {
-
-
+pcm_to_wav = function(input,
+                      output = tempfile(fileext = ".wav"),
+                      sample_rate = 16000,
+                      extensible = FALSE) {
   tfile = tempfile(fileext = ".pcm")
   if (is.raw(input)) {
     writeBin(input, con = tfile)

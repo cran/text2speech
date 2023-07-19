@@ -1,15 +1,13 @@
-
-#' Speak Enginge for `knitr`
+#' Speak Engine for `knitr`
 #'
-#' @param options A list of chunk options. Usually this is just the
-#' object options passed to the engine function; see
-#'  \code{\link{knit_engines}}
+#' @param options A list of chunk options. Usually this is just the object
+#'   options passed to the engine function; see \code{\link{knit_engines}}
 #'
-#' @return A character string generated from the source code and
-#' output using the appropriate output hooks.
+#' @return A character string generated from the source code and output using
+#'   the appropriate output hooks.
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
 #' knitr::knit_engines$set(speak = tts_speak_engine)
 #' options = list(
 #' code = "hey let's go to the park",
@@ -23,6 +21,7 @@
 #'        options$eval = TRUE
 #'        tts_speak_engine(options)
 #'     }
+#' }
 tts_speak_engine = function(options) {
   # print(options)
   if (!options$eval) {

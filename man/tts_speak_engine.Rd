@@ -2,23 +2,23 @@
 % Please edit documentation in R/tts_speak_engine.R
 \name{tts_speak_engine}
 \alias{tts_speak_engine}
-\title{Speak Enginge for \code{knitr}}
+\title{Speak Engine for \code{knitr}}
 \usage{
 tts_speak_engine(options)
 }
 \arguments{
-\item{options}{A list of chunk options. Usually this is just the
-object options passed to the engine function; see
-\code{\link{knit_engines}}}
+\item{options}{A list of chunk options. Usually this is just the object
+options passed to the engine function; see \code{\link{knit_engines}}}
 }
 \value{
-A character string generated from the source code and
-output using the appropriate output hooks.
+A character string generated from the source code and output using
+the appropriate output hooks.
 }
 \description{
-Speak Enginge for \code{knitr}
+Speak Engine for \code{knitr}
 }
 \examples{
+\dontrun{
 knitr::knit_engines$set(speak = tts_speak_engine)
 options = list(
 code = "hey let's go to the park",
@@ -32,4 +32,5 @@ tts_speak_engine(options)
        options$eval = TRUE
        tts_speak_engine(options)
     }
+}
 }
